@@ -14,7 +14,7 @@ const template = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'ut
 
 app.get('*', (req, res) => {
     const appString = ReactSSR.renderToString(serverEntry);
-    const str = template.replace('<app></app>', appString)
+    const str = template.replace('<!-- app -->', appString)
     res.send(str)
 })
 
