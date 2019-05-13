@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "env": { // 可以用一些环境变量，eslint不会报错
+    "browser": true, // 可以写window之类变量的时候
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6, // es6 规范
+    "sourceType": "module" // module方式，而不是自执行方式
+  },
+  "extends": "airbnb", // Airbnb公司的规范
+  "rules": {
+    "semi": [0], // [0] 表示不检查
+    "react/jsx-filename-extension": [0],
+    "jsx-a11y/anchor-is-valid": [0],
+    "react/require-default-props": [0],
+    "arrow-body-style": [0],
+    "no-param-reassign": [0]
+  }
+}

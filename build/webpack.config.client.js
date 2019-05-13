@@ -1,33 +1,17 @@
 const path = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const webpackMerge = require('webpack-merge')
+const baseConfig = require('./webpack.base')
 
 const isDev = process.env.NODE_ENV ==='development'
 
-const config = {
-    entry: {
+const config = webpackMerge(baseConfig,{
+    entry:{
         app: path.join(__dirname, '../client/app.js')
     },
     output: {
         filename: "[name].[hash:8].js",
-        path: path.join(__dirname, '../dist'),
-        publicPath: "/public/" // 1.用来区分静态资源和api 2.线上静态资源部署cdn，方便，直接在/public前面加前缀就行了
-    },
-    module: {
-        rules: [
-            {
-                test: /.jsx$/,
-                loader: 'babel-loader',
-            },
-            {
-                test: /.js$/,
-                loader: 'babel-loader',
-                exclude: [
-                    path.join(__dirname, '../node_modules')
-                ]
-            }
-
-        ]
     },
     plugins: [
         new HTMLPlugin({
@@ -37,7 +21,7 @@ const config = {
             "React": "react",
         }),
     ],
-}
+})
 
 if (isDev){
     config.plugins.push(new webpack.HotModuleReplacementPlugin())
