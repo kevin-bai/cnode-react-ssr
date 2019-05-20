@@ -10,7 +10,7 @@ ReactDom.hydrate(<App />, document.getElementById('root'))
 
 const root = document.getElementById('root')
 const render = (Component) => {
-  ReactDom.hydrate(
+  ReactDom.render(
     <AppContainer>
       <BrowserRouter>
         <Component />
@@ -22,8 +22,8 @@ render(App)
 
 // 配置hot module replacement
 if (module.hot) {
-  module.hot.accept('./App.jsx', () => {
-    const NextApp = require('./views/App.jsx').default; // eslint-disable-line
+  module.hot.accept('./views/App', () => {
+    const NextApp = require('./views/App').default; // eslint-disable-line
     render(NextApp)
   })
 }
